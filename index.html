@@ -1,389 +1,710 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R3DFIELD - Overlay</title>
-    <!-- Fuente gamer de Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Fuente condensada similar al estilo de las referencias -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ----- RESET Y FONDO ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            background: #0a0a0a;
-            font-family: 'Orbitron', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            color: #fff;
+
+        :root {
+            --red: #f10b0b;
+            --red-hot: #ff1b1b;
+            --red-dark: #650000;
+            --white: #f4f4f4;
+            --gray: #9b9b9b;
+            --black: #030303;
         }
 
-        /* ----- CONTENEDOR PRINCIPAL ----- */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #020202;
+        }
+
+        body {
+            color: var(--white);
+            font-family: 'Oswald', Arial, sans-serif;
+        }
+
         .container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(ellipse at center, #1a0000 0%, #0a0a0a 70%);
             overflow: hidden;
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse at 50% 52%, rgba(105, 0, 0, .28) 0%, rgba(25, 0, 0, .16) 28%, transparent 58%),
+                radial-gradient(ellipse at 18% 75%, rgba(255, 0, 0, .17) 0%, transparent 31%),
+                radial-gradient(ellipse at 82% 75%, rgba(255, 0, 0, .17) 0%, transparent 31%),
+                linear-gradient(180deg, #020202 0%, #080808 48%, #030303 100%);
         }
 
-        /* Efecto de luz ambiente */
+        /* Textura oscura */
         .container::before {
-            content: '';
+            content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 0, 0, 0.05) 0%, transparent 60%);
-            animation: rotateGlow 20s linear infinite;
-        }
-        @keyframes rotateGlow {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-            100% {
-                transform: rotate(360deg) scale(1.2);
-            }
+            inset: 0;
+            z-index: -6;
+            opacity: .5;
+            background:
+                repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 4px),
+                repeating-linear-gradient(90deg, rgba(255,0,0,.008) 0 1px, transparent 1px 7px);
+            pointer-events: none;
         }
 
-        /* ----- PARTÍCULAS ----- */
+        /* Gran humo rojo difuminado */
+        .smoke {
+            position: absolute;
+            inset: 0;
+            z-index: -5;
+            pointer-events: none;
+            filter: blur(30px);
+            opacity: .7;
+        }
+
+        .smoke::before,
+        .smoke::after {
+            content: "";
+            position: absolute;
+            width: 42vw;
+            height: 27vh;
+            border-radius: 50%;
+            background:
+                radial-gradient(ellipse, rgba(255, 24, 24, .28) 0%, rgba(120,0,0,.15) 35%, transparent 72%);
+            animation: smokeMove 9s ease-in-out infinite alternate;
+        }
+
+        .smoke::before {
+            left: 8%;
+            top: 18%;
+            transform: rotate(-13deg);
+        }
+
+        .smoke::after {
+            right: 8%;
+            top: 22%;
+            transform: rotate(13deg);
+            animation-delay: -4s;
+        }
+
+        @keyframes smokeMove {
+            from { transform: translate3d(-2%, 2%, 0) scale(1); }
+            to   { transform: translate3d(3%, -3%, 0) scale(1.12); }
+        }
+
+        /* Suelo rojo */
+        .floor {
+            position: absolute;
+            left: -10%;
+            right: -10%;
+            bottom: -12%;
+            height: 30%;
+            z-index: -4;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: bottom;
+            background:
+                radial-gradient(ellipse at center, rgba(255, 0, 0, .34), transparent 57%),
+                repeating-linear-gradient(90deg, transparent 0 7%, rgba(255,0,0,.08) 7.05% 7.1%, transparent 7.15% 14%);
+            box-shadow: 0 -25px 90px rgba(255,0,0,.16);
+        }
+
+        /* Reflejo/horizonte */
+        .horizon {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20%;
+            height: 2px;
+            z-index: -3;
+            background: linear-gradient(90deg, transparent, rgba(255,0,0,.9) 15%, rgba(255,35,35,.5) 50%, rgba(255,0,0,.9) 85%, transparent);
+            box-shadow: 0 0 22px rgba(255,0,0,.55);
+        }
+
+        /* Paneles angulares laterales */
+        .side {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 25vw;
+            z-index: -2;
+            opacity: .95;
+        }
+
+        .side.left {
+            left: 0;
+            clip-path: polygon(0 0, 43% 0, 86% 37%, 68% 50%, 86% 63%, 43% 100%, 0 100%, 0 72%, 26% 50%, 0 28%);
+            background:
+                linear-gradient(135deg, rgba(255,0,0,.08), transparent 40%),
+                linear-gradient(315deg, rgba(255,0,0,.06), transparent 48%),
+                #050505;
+        }
+
+        .side.right {
+            right: 0;
+            transform: scaleX(-1);
+            clip-path: polygon(0 0, 43% 0, 86% 37%, 68% 50%, 86% 63%, 43% 100%, 0 100%, 0 72%, 26% 50%, 0 28%);
+            background:
+                linear-gradient(135deg, rgba(255,0,0,.08), transparent 40%),
+                linear-gradient(315deg, rgba(255,0,0,.06), transparent 48%),
+                #050505;
+        }
+
+        .side::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0 10px, rgba(255,255,255,.018) 11px 12px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 3%;
+            bottom: 3%;
+            width: 20vw;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .edge.left {
+            left: -2vw;
+            border-right: 3px solid rgba(255, 0, 0, .8);
+            transform: skewX(-31deg);
+            box-shadow: 12px 0 12px rgba(255,0,0,.15);
+        }
+
+        .edge.right {
+            right: -2vw;
+            border-left: 3px solid rgba(255, 0, 0, .8);
+            transform: skewX(31deg);
+            box-shadow: -12px 0 12px rgba(255,0,0,.15);
+        }
+
+        /* Logo gigante del fondo */
+        .watermark {
+            position: absolute;
+            top: 1%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -2;
+            font-family: Arial, sans-serif;
+            font-size: min(48vw, 55vh);
+            line-height: .8;
+            font-weight: 900;
+            font-style: italic;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,.10);
+            text-shadow:
+                0 0 2px rgba(255,0,0,.18),
+                0 0 45px rgba(255,0,0,.05);
+            opacity: .7;
+            user-select: none;
+        }
+
+        /* Pequeños detalles luminosos */
+        .sparks {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 17% 24%, rgba(255,30,30,.9) 0 1px, transparent 2px),
+                radial-gradient(circle at 30% 19%, rgba(255,30,30,.8) 0 1px, transparent 2px),
+                radial-gradient(circle at 67% 27%, rgba(255,30,30,.9) 0 1px, transparent 2px),
+                radial-gradient(circle at 84% 18%, rgba(255,30,30,.8) 0 1px, transparent 2px),
+                radial-gradient(circle at 76% 50%, rgba(255,30,30,.9) 0 2px, transparent 4px),
+                radial-gradient(circle at 24% 52%, rgba(255,30,30,.8) 0 1px, transparent 3px);
+            animation: sparks 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparks {
+            from { opacity: .45; }
+            to { opacity: 1; }
+        }
+
+        /* Partículas */
+        #particles {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .particle {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255, 50, 50, 0.6);
+            background: rgba(255, 35, 35, .7);
+            box-shadow: 0 0 6px rgba(255,0,0,.7);
             border-radius: 50%;
-            animation: floatParticle 6s infinite ease-in-out;
-            pointer-events: none;
-        }
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(0px) scale(1);
-                opacity: 0.2;
-            }
-            50% {
-                transform: translateY(-30px) scale(1.5);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(0px) scale(1);
-                opacity: 0.2;
-            }
+            animation: floatParticle 5s ease-in-out infinite;
         }
 
-        /* ----- OVERLAY (cada pantalla) ----- */
+        @keyframes floatParticle {
+            0%,100% { transform: translateY(10px) scale(.6); opacity: .15; }
+            50% { transform: translateY(-35px) scale(1.5); opacity: .9; }
+        }
+
+        /* Pantallas */
         .screen {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: scale(.985);
+            transition: opacity .65s ease, transform .65s ease;
             pointer-events: none;
-            z-index: 1;
+            padding-bottom: 6vh;
         }
+
         .screen.active {
             opacity: 1;
             transform: scale(1);
             pointer-events: auto;
         }
 
-        /* ----- ESTILOS DE TEXTO (compartidos) ----- */
-        .line1 {
-            font-size: clamp(2rem, 8vw, 6rem);
-            font-weight: 700;
-            letter-spacing: 0.5rem;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 50, 50, 0.3);
-            margin-bottom: 0.2em;
+        .stream-label {
+            position: relative;
+            margin-bottom: 18px;
+            padding: 0 42px;
+            font-size: clamp(14px, 1.25vw, 24px);
+            font-weight: 600;
+            letter-spacing: .48em;
+            color: var(--red);
+            text-transform: uppercase;
         }
-        .line2 {
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 900;
-            letter-spacing: 0.3rem;
-            color: #ff1a1a;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.4);
-            animation: pulseGlow 2s infinite alternate;
+
+        .stream-label::before,
+        .stream-label::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: clamp(45px, 7vw, 120px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red));
+            box-shadow: 0 0 8px rgba(255,0,0,.55);
         }
-        @keyframes pulseGlow {
-            0% {
-                text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 60px rgba(255, 0, 0, 0.3);
-            }
-            100% {
-                text-shadow: 0 0 40px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.6), 0 0 120px rgba(255, 0, 0, 0.3);
-            }
+
+        .stream-label::before {
+            right: 100%;
+        }
+
+        .stream-label::after {
+            left: 100%;
+            transform: scaleX(-1);
+        }
+
+        .stream-mark {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%) skewX(-20deg);
+            display: flex;
+            gap: 7px;
+        }
+
+        .stream-mark span {
+            width: 8px;
+            height: 18px;
+            background: linear-gradient(180deg, #fff, var(--red));
+        }
+
+        .main-title {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: .18em;
+            flex-wrap: wrap;
+            max-width: 94vw;
+            font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+            font-size: clamp(54px, 9.7vw, 160px);
+            line-height: .82;
+            letter-spacing: .025em;
+            font-weight: 400;
+            text-transform: uppercase;
+            filter: drop-shadow(0 8px 14px rgba(0,0,0,.75));
+        }
+
+        .main-title .white {
+            color: #eee;
+            background: linear-gradient(180deg, #fff 0%, #d9d9d9 55%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-title .red {
+            color: var(--red);
+            background: linear-gradient(180deg, #ff3434 0%, #e30000 55%, #780000 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 28px rgba(255,0,0,.22);
         }
 
         .sub {
-            font-size: clamp(1rem, 3vw, 2rem);
-            font-weight: 400;
-            letter-spacing: 0.3rem;
-            color: #aaa;
-            margin: 0.5em 0 1.5em 0;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 28px;
+            padding: 8px 48px;
+            font-size: clamp(12px, 1.45vw, 24px);
+            font-weight: 500;
+            letter-spacing: .32em;
+            color: #ddd;
             text-transform: uppercase;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5em 1.5em;
-            background: rgba(255, 255, 255, 0.02);
+            white-space: nowrap;
+        }
+
+        .sub::before,
+        .sub::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 5px;
+            background: var(--red);
+            box-shadow: 0 0 10px rgba(255,0,0,.7);
+        }
+
+        .sub::before { left: 0; }
+        .sub::after { right: 0; }
+
+        .sub span {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,0,0,.75), transparent);
+            box-shadow: 0 0 7px rgba(255,0,0,.4);
+        }
+
+        .sub span:last-child {
+            top: auto;
+            bottom: 0;
         }
 
         .brand {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            letter-spacing: 0.6rem;
-            color: #ff1a1a;
-            text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 90px rgba(255, 0, 0, 0.5), 0 0 150px rgba(255, 0, 0, 0.2);
-            animation: neonPulse 3s infinite alternate;
-            margin-top: 0.3em;
+            margin-top: 38px;
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(30px, 3.1vw, 56px);
+            letter-spacing: .22em;
+            font-weight: 600;
+            color: #eee;
+            text-transform: uppercase;
         }
-        @keyframes neonPulse {
-            0% {
-                text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.4);
-            }
-            100% {
-                text-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.7), 0 0 150px rgba(255, 0, 0, 0.3);
-            }
+
+        .brand .r {
+            color: var(--red);
+            text-shadow: 0 0 14px rgba(255,0,0,.4);
         }
 
         .brand-variants {
+            display: none;
+        }
+
+        /* Barra inferior inspirada directamente en las referencias */
+        .social-bar {
+            position: absolute;
+            z-index: 6;
+            left: 50%;
+            bottom: 8.5%;
+            transform: translateX(-50%);
+            width: min(52vw, 880px);
+            min-width: 520px;
+            height: 72px;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr 1px 1fr;
+            align-items: center;
+            background: rgba(2,2,2,.84);
+            border: 1px solid rgba(255,0,0,.4);
+            clip-path: polygon(3% 0, 97% 0, 100% 22%, 100% 78%, 97% 100%, 3% 100%, 0 78%, 0 22%);
+            box-shadow:
+                0 0 25px rgba(255,0,0,.08),
+                inset 0 0 25px rgba(255,0,0,.04);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255,255,255,.35);
+        }
+
+        .social {
             display: flex;
-            gap: 1.5rem;
             justify-content: center;
-            margin-top: 0.8em;
-            font-size: clamp(0.8rem, 2vw, 1.4rem);
-            color: #555;
-            letter-spacing: 0.2rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            color: #ddd;
+            font-size: clamp(11px, 1vw, 17px);
+            letter-spacing: .13em;
+            white-space: nowrap;
         }
-        .brand-variants span {
-            opacity: 0.6;
-            transition: opacity 0.3s;
+
+        .social .icon {
+            display: inline-flex;
+            width: 32px;
+            height: 32px;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            color: #fff;
+            background: var(--red);
+            clip-path: polygon(16% 0, 84% 0, 100% 16%, 100% 84%, 84% 100%, 16% 100%, 0 84%, 0 16%);
+            box-shadow: 0 0 14px rgba(255,0,0,.3);
         }
-        .brand-variants span:hover {
-            opacity: 1;
-            color: #ff4444;
+
+        .social.x .icon {
+            background: transparent;
+            font-size: 29px;
+            box-shadow: none;
         }
 
         .countdown {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-top: 0.5em;
-            color: #ff4444;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-            letter-spacing: 0.2rem;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 0.2em 1em;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 0, 0, 0.2);
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
         }
 
-        /* ----- ESTILOS ESPECÍFICOS PARA LA ALERTA DE DONACIÓN ----- */
+        /* Mantiene la lógica de donaciones, pero visualmente integrada */
         .donation-message {
-            font-size: clamp(1.2rem, 3vw, 2.5rem);
-            font-weight: 400;
-            color: #ddd;
-            margin: 0.8em 0;
-            letter-spacing: 0.1rem;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-            max-width: 80%;
-        }
-        .donation-amount {
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: 900;
-            color: #ff1a1a;
-            text-shadow: 0 0 30px rgba(255, 0, 0, 0.7), 0 0 60px rgba(255, 0, 0, 0.3);
-            animation: pulseGlow 1.5s infinite alternate;
-            margin: 0.2em 0;
-        }
-        .donation-type {
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: 0.3rem;
-            color: #ff6666;
-            text-transform: uppercase;
-            background: rgba(255, 0, 0, 0.1);
-            padding: 0.2em 1.2em;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            margin-bottom: 0.5em;
+            margin-top: 24px;
+            color: #ccc;
+            font-size: clamp(13px, 1.6vw, 24px);
+            letter-spacing: .08em;
         }
 
-        /* ----- CONTROLES (solo para pruebas) ----- */
+        .donation-amount {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(70px, 10vw, 160px);
+            color: var(--red);
+            text-shadow: 0 0 25px rgba(255,0,0,.5);
+        }
+
+        .donation-type {
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,0,0,.45);
+            padding: 8px 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Controles de prueba */
         .controls {
             position: fixed;
-            bottom: 30px;
+            z-index: 20;
             left: 50%;
+            bottom: 15px;
             transform: translateX(-50%);
-            z-index: 10;
             display: flex;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 12px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .controls button {
-            background: transparent;
-            border: 2px solid #ff1a1a;
-            color: #ff1a1a;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-        }
-        .controls button:hover {
-            background: #ff1a1a;
-            color: #0a0a0a;
-        }
-        .controls button.active-btn {
-            background: #ff1a1a;
-            color: #0a0a0a;
-        }
-        .controls .hint {
-            color: #777;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            margin-left: 8px;
-            border-left: 1px solid #333;
-            padding-left: 12px;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(0,0,0,.8);
+            border: 1px solid rgba(255,0,0,.25);
+            border-radius: 6px;
+            opacity: .25;
+            transition: opacity .25s;
         }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 768px) {
-            .line1 {
-                font-size: 1.8rem;
-                letter-spacing: 0.2rem;
+        .controls:hover {
+            opacity: 1;
+        }
+
+        .controls button {
+            border: 1px solid var(--red);
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            padding: 7px 14px;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .controls button.active-btn,
+        .controls button:hover {
+            background: var(--red);
+            color: #000;
+        }
+
+        .hint {
+            color: #777;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .social-bar {
+                min-width: 420px;
+                width: 70vw;
             }
-            .line2 {
-                font-size: 2.8rem;
-            }
-            .sub {
-                font-size: 0.9rem;
-                padding: 0.3em 1em;
-            }
-            .brand {
-                font-size: 2.5rem;
-            }
-            .brand-variants {
-                font-size: 0.7rem;
-                gap: 0.8rem;
-            }
-            .donation-amount {
-                font-size: 3.5rem;
-            }
-            .donation-type {
-                font-size: 1.2rem;
-            }
-            .donation-message {
-                font-size: 1rem;
-            }
-            .controls {
-                padding: 10px 14px;
+
+            .social {
+                font-size: 10px;
                 gap: 8px;
-                bottom: 15px;
             }
-            .controls button {
-                font-size: 0.65rem;
-                padding: 4px 10px;
+
+            .social .icon {
+                width: 25px;
+                height: 25px;
             }
-            .hint {
+        }
+
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: clamp(44px, 13vw, 78px);
+            }
+
+            .sub {
+                font-size: 10px;
+                letter-spacing: .18em;
+                padding: 7px 25px;
+            }
+
+            .social-bar {
+                min-width: 0;
+                width: 92vw;
+                height: 60px;
+            }
+
+            .social {
+                font-size: 8px;
+                gap: 5px;
+                letter-spacing: .06em;
+            }
+
+            .social .icon {
+                width: 22px;
+                height: 22px;
+                font-size: 13px;
+            }
+
+            .brand {
+                margin-top: 25px;
+                font-size: 25px;
+            }
+
+            .controls {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container" id="container">
-        <!-- Partículas generadas por JS -->
+        <div class="smoke"></div>
+        <div class="floor"></div>
+        <div class="horizon"></div>
+        <div class="side left"></div>
+        <div class="side right"></div>
+        <div class="edge left"></div>
+        <div class="edge right"></div>
+        <div class="watermark">R3</div>
+        <div class="sparks"></div>
         <div id="particles"></div>
 
         <!-- ===== PANTALLA 1: STARTING SOON ===== -->
         <div class="screen active" id="screen-start">
-            <div class="line1">STREAM</div>
-            <div class="line2">STARTING SOON</div>
-            <div class="sub">THE STREAM WILL BEGIN SHORTLY</div>
-            <div class="brand">R3DFIELD</div>
-            <div class="brand-variants">
-                <span>R3DFIELD</span>
-                <span>R3dfield</span>
-                <span>r3dfield</span>
-                <span>R3DFIELD1</span>
+            <div class="stream-label">
+                <div class="stream-mark"><span></span><span></span><span></span></div>
+                STREAM
             </div>
+
+            <div class="main-title">
+                <span class="white">STARTING</span>
+                <span class="red">SOON...</span>
+            </div>
+
+            <div class="sub">
+                <span></span>
+                THE STREAM WILL BEGIN SHORTLY
+                <span></span>
+            </div>
+
+            <div class="brand"><span class="r">R3</span>DFIELD</div>
+
+            <!-- Se mantiene para no romper la lógica original -->
             <div class="countdown" id="countdown">05:00</div>
         </div>
 
         <!-- ===== PANTALLA 2: BE RIGHT BACK ===== -->
         <div class="screen" id="screen-brb">
-            <div class="line1">STREAM</div>
-            <div class="line2">BE RIGHT BACK</div>
-            <div class="sub">TAKING A SHORT BREAK</div>
-            <div class="brand">R3DFIELD</div>
-            <div class="brand-variants">
-                <span>R3DFIELD</span>
-                <span>R3dfield</span>
-                <span>×</span>
-                <span>r3dfield</span>
-                <span>R3DFIELD1</span>
+            <div class="stream-label">
+                <div class="stream-mark"><span></span><span></span><span></span></div>
+                STREAM
             </div>
+
+            <div class="main-title">
+                <span class="white">BE</span>
+                <span class="red">RIGHT</span>
+                <span class="white">BACK</span>
+            </div>
+
+            <div class="sub">
+                <span></span>
+                TAKING A SHORT BREAK
+                <span></span>
+            </div>
+
+            <div class="brand"><span class="r">R3</span>DFIELD</div>
         </div>
 
         <!-- ===== PANTALLA 3: DONATION ALERT ===== -->
         <div class="screen" id="screen-donation">
-            <div class="line1">💀 R3DFIELD</div>
-            <div class="donation-type">🔴 TIP</div>
-            <!-- Cambia el texto aquí para probar la otra alerta -->
+            <div class="stream-label">STREAM</div>
+            <div class="donation-type">TIP</div>
             <div class="donation-amount">$23</div>
-            <div class="brand" style="font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 0.3rem;">
-                debwulodirty
-            </div>
-            <div class="brand-variants">
-                <span>debwulodirty</span>
-                <span>DEBWULODIRTY</span>
-                <span>DebWuLoDirty</span>
-                <span>d3bwu10d1r7y</span>
-            </div>
+            <div class="brand"><span class="r">R3</span>DFIELD</div>
             <div class="donation-message">"it's debwulodirty the hacker on linux"</div>
-            <!-- Comentario: para probar la segunda alerta, reemplaza el bloque de arriba con el de abajo -->
-            <!--
-            <div class="donation-type">⭐ SUPERCHAT</div>
-            <div class="donation-amount">$671</div>
-            <div class="brand" style="font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 0.3rem;">
-                debbuoldirty
+        </div>
+
+        <!-- Barra inferior como en las referencias -->
+        <div class="social-bar">
+            <div class="social">
+                <span class="icon">▶</span>
+                <span>R3dfield</span>
             </div>
-            <div class="brand-variants">
-                <span>debbuoldirty</span>
-                <span>DEBBUOLDIRTY</span>
-                <span>DebBuoLDirty</span>
-                <span>d3bbu0ld1r7y</span>
+
+            <div class="social-divider"></div>
+
+            <div class="social x">
+                <span class="icon">𝕏</span>
+                <span>R3dfield1</span>
             </div>
-            <div class="donation-message">"Superchat alert test. It's me, debwuoldirty the SAMP addict"</div>
-            -->
+
+            <div class="social-divider"></div>
+
+            <div class="social">
+                <span class="icon">◉</span>
+                <span>r3dfield</span>
+            </div>
         </div>
     </div>
 
@@ -399,16 +720,20 @@
         // ----- PARTÍCULAS -----
         (function createParticles() {
             const container = document.getElementById('particles');
-            const count = 50;
+            const count = 65;
+
             for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.style.left = Math.random() * 100 + '%';
-                p.style.top = Math.random() * 100 + '%';
-                p.style.animationDelay = (Math.random() * 6) + 's';
-                p.style.animationDuration = (4 + Math.random() * 4) + 's';
-                p.style.width = (1 + Math.random() * 3) + 'px';
-                p.style.height = p.style.width;
+                p.style.top = (Math.random() * 82) + '%';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                p.style.animationDuration = (3 + Math.random() * 5) + 's';
+
+                const size = (1 + Math.random() * 2.5);
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+
                 container.appendChild(p);
             }
         })();
@@ -417,6 +742,7 @@
         const screenStart = document.getElementById('screen-start');
         const screenBrb = document.getElementById('screen-brb');
         const screenDonation = document.getElementById('screen-donation');
+
         const btnStart = document.getElementById('btn-start');
         const btnBrb = document.getElementById('btn-brb');
         const btnDonation = document.getElementById('btn-donation');
@@ -425,6 +751,7 @@
             screenStart.classList.remove('active');
             screenBrb.classList.remove('active');
             screenDonation.classList.remove('active');
+
             btnStart.classList.remove('active-btn');
             btnBrb.classList.remove('active-btn');
             btnDonation.classList.remove('active-btn');
@@ -445,7 +772,7 @@
         btnBrb.addEventListener('click', () => setScreen('brb'));
         btnDonation.addEventListener('click', () => setScreen('donation'));
 
-        // Atajos de teclado (1, 2, 3)
+        // Atajos de teclado
         document.addEventListener('keydown', (e) => {
             if (e.key === '1') setScreen('start');
             if (e.key === '2') setScreen('brb');
@@ -459,17 +786,21 @@
         function updateCountdown() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            countdownEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            countdownEl.textContent =
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
             if (timeLeft > 0) {
                 timeLeft--;
             } else {
                 timeLeft = 5 * 60;
             }
         }
+
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        console.log('✅ Overlay R3DFIELD con 3 pantallas (1: START, 2: BRB, 3: DONATION)');
+        console.log('Overlay R3DFIELD visual basado en las referencias: 1 START, 2 BRB, 3 DONATION');
     </script>
 </body>
 </html>
