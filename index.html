@@ -8,6 +8,15 @@
         /* ============================================================
            OPEN SOURCE WORLD – LANDING PAGE (based on help.pwn)
            ============================================================ */
+
+        /* ===== FUENTE PERSONALIZADA (Pricedown de GTA SA) ===== */
+        @font-face {
+            font-family: 'Pricedown';
+            src: url('fonts/Pricedown.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -41,16 +50,19 @@
         }
 
         header h1 {
-            font-size: 3.2rem;
+            font-family: 'Pricedown', cursive;
+            font-size: 3.8rem;
             color: #00ff88;
             text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
             letter-spacing: 2px;
         }
 
         header .subtitle {
-            font-size: 1.2rem;
+            font-family: 'Pricedown', cursive;
+            font-size: 1.6rem;
             color: #aaa;
             margin-top: 8px;
+            letter-spacing: 1px;
         }
 
         .status-badge {
@@ -98,17 +110,21 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-family: 'Pricedown', cursive;
+            font-size: 2.4rem;
             color: #00ff88;
             border-bottom: 1px solid #2a2a3a;
             padding-bottom: 10px;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         h3 {
+            font-family: 'Pricedown', cursive;
             color: #00aaff;
             margin: 20px 0 10px 0;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
         }
 
         .grid-2col {
@@ -139,8 +155,11 @@
         }
 
         .card h4 {
+            font-family: 'Pricedown', cursive;
             color: #00aaff;
             margin-bottom: 8px;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
         }
 
         .card p {
@@ -164,6 +183,9 @@
             text-decoration: none;
             transition: 0.2s;
             cursor: default;
+            font-family: 'Pricedown', cursive;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
 
         .web-item:hover {
@@ -191,6 +213,8 @@
             color: #00ff88;
             font-weight: bold;
             margin-right: 12px;
+            font-family: 'Pricedown', cursive;
+            font-size: 1.1rem;
         }
 
         /* NEW GALLERY STYLES */
@@ -233,6 +257,8 @@
             font-size: 0.95rem;
             background: #0d0d14;
             border-top: 1px solid #1a1a2a;
+            font-family: 'Pricedown', cursive;
+            letter-spacing: 0.5px;
         }
 
         /* ===== LIGHTBOX / MODAL DE IMÁGENES ===== */
@@ -307,7 +333,8 @@
         /* RESPONSIVE */
         @media (max-width: 700px) {
             .container { padding: 20px; }
-            header h1 { font-size: 2.2rem; }
+            header h1 { font-size: 2.8rem; }
+            header .subtitle { font-size: 1.3rem; }
             .grid-2col { grid-template-columns: 1fr; }
             .grid-3col { grid-template-columns: 1fr; }
             .screenshot-item { width: 100%; max-width: 400px; }
@@ -341,17 +368,17 @@
     <section>
         <h2>✨ Key Features</h2>
         <div class="grid-3col">
-            <!-- NUEVA POSICIÓN: NPC Walkers (AHORA ES LA PRIMERA) -->
+            <!-- NPC Walkers -->
             <div class="card">
                 <h4>🚶‍♂️ 150+ NPC Walkers</h4>
                 <p>The server now has <strong>150+ persistent NPCs</strong> walking around Los Santos, added by owner <strong>debwuoldirty</strong>. They are not distance‑based – they are always there, making the world feel alive. The owner plans to keep adding more NPCs every single day to give the server a truly original and lively atmosphere!</p>
             </div>
-            <!-- SIGUE: Radio Stream -->
+            <!-- Radio Stream -->
             <div class="card">
                 <h4>📻 Radio Stream System</h4>
                 <p>Owner <strong>debwuoldirty</strong> successfully added a new in-game radio stream with 5 custom styles: Hip-Hop, Rock, Electro House, Latino, and Pop. Each list contains 10 selectable and changeable songs in the moment (not random), providing an excellent real-time radio experience for all players.</p>
             </div>
-            <!-- RESTO DE TARJETAS -->
+            <!-- Bank & PIN -->
             <div class="card">
                 <h4>🏦 Bank & PIN</h4>
                 <p>Full bank system with ATM, transfers, transaction history, and bank cards. All economy requires a Bank Card and a 3‑digit PIN. Request yours at the bank counter.</p>
@@ -415,27 +442,22 @@
     <section>
         <h2>📸 Latest Updates Screenshots</h2>
         <div class="screenshot-grid">
-            <!-- NUEVA PRIMERA POSICIÓN: 150+ NPC Walkers -->
             <div class="screenshot-item">
                 <img class="lightbox-trigger" src="images/npcs_walkers.png" alt="150+ NPC Walkers">
                 <div class="image-caption">🚶‍♂️ 150+ NPC Walkers</div>
             </div>
-            <!-- SEGUNDA: Radio System -->
             <div class="screenshot-item">
                 <img class="lightbox-trigger" src="images/radio.png" alt="New Radio Stream System">
                 <div class="image-caption">📻 New Radio Stream System</div>
             </div>
-            <!-- TERCERA: OPSbot (AI Helper) -->
             <div class="screenshot-item">
                 <img class="lightbox-trigger" src="images/opsbot.png" alt="AI Helper">
                 <div class="image-caption">🤖 New AI Model as Helper</div>
             </div>
-            <!-- CUARTA: Nuevo Inventario Visual -->
             <div class="screenshot-item">
                 <img class="lightbox-trigger" src="images/inv_new.png" alt="New Visual Inventory">
                 <div class="image-caption">📦 New Visual Inventory</div>
             </div>
-            <!-- Resto de imágenes -->
             <div class="screenshot-item">
                 <img class="lightbox-trigger" src="images/source_bank_buildings.png" alt="New Source Bank Buildings">
                 <div class="image-caption">🏢 New Source Bank Buildings</div>
@@ -515,9 +537,7 @@
     <section>
         <h2>📅 Latest Updates (Changelog)</h2>
         <ul class="update-list">
-            <!-- NUEVO LOG: 150+ NPCs (agregado arriba) -->
             <li><span class="date">2026-08-30</span> – Owner <strong>debwuoldirty</strong> has successfully boosted the persistent NPC population to over <strong>150 walkers</strong> across Los Santos, with plans to keep adding more daily to give the server an original and vibrant life!</li>
-            <!-- LOG: Radio System -->
             <li><span class="date">2026-08-30</span> – Owner <strong>debwuoldirty</strong> successfully added a new in-game radio streaming system featuring 5 music styles (Hip-Hop, Rock, Electro House, Latino, Pop) with 10 manually selectable songs per list, offering an excellent real-time radio experience for all players!</li>
             <li><span class="date">2026-08-08</span> – Owner <strong>debwuoldirty</strong> deployed a new visual inventory interface – items now have icons and colors for easier management. Also added persistent NPC walkers across Los Santos, with more coming daily!</li>
             <li><span class="date">2026-08-07</span> – Owner <strong>debwuoldirty</strong> integrated an AI helper model for players. New players can now ask for help with gameplay, math challenges, world sports, YouTube, social media, and more – directly in the server!</li>
