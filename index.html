@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0f;
+            background: #0a0a0f; /* Fondo exterior oscuro */
             color: #e0e0e0;
             line-height: 1.6;
             padding: 20px;
@@ -34,17 +34,17 @@
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            background: #111118;
+            background: #00ffaa; /* Fondo del contenedor principal en verde-cyan claro */
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
-            border: 1px solid #00ffaa; /* Borde del contenedor principal en verde-cyan */
+            border: 1px solid #00ffcc; /* Borde en cyan brillante */
         }
 
         /* HEADER */
         header {
             text-align: center;
-            border-bottom: 2px solid #00ffcc; /* Línea inferior en cyan brillante */
+            border-bottom: 2px solid #00ffcc;
             padding-bottom: 30px;
             margin-bottom: 30px;
         }
@@ -52,7 +52,7 @@
         header h1 {
             font-family: 'Pricedown', cursive;
             font-size: 3.8rem;
-            color: #00ffcc; /* Título principal en cyan */
+            color: #0a0a0f; /* Título en oscuro para contraste sobre fondo claro */
             text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
             letter-spacing: 2px;
         }
@@ -60,7 +60,7 @@
         header .subtitle {
             font-family: 'Pricedown', cursive;
             font-size: 1.6rem;
-            color: #00ffaa; /* Subtítulo en verde-cyan */
+            color: #0a0a0f; /* Subtítulo en oscuro */
             margin-top: 8px;
             letter-spacing: 1px;
         }
@@ -112,8 +112,8 @@
         h2 {
             font-family: 'Pricedown', cursive;
             font-size: 2.4rem;
-            color: #00ffcc; /* Títulos de sección en cyan */
-            border-bottom: 1px solid #00ffaa; /* Línea inferior en verde-cyan */
+            color: #0a0a0f; /* Títulos de sección en oscuro */
+            border-bottom: 1px solid #0a0a0f;
             padding-bottom: 10px;
             margin-bottom: 20px;
             letter-spacing: 1px;
@@ -121,7 +121,7 @@
 
         h3 {
             font-family: 'Pricedown', cursive;
-            color: #00ffcc; /* Subtítulos en cyan */
+            color: #0a0a0f;
             margin: 20px 0 10px 0;
             font-size: 1.5rem;
             letter-spacing: 1px;
@@ -142,12 +142,12 @@
         }
 
         .card {
-            background: #00ffaa; /* Fondo de las tarjetas en verde-cyan */
+            background: #111118; /* Fondo oscuro para las tarjetas */
             padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #00ffcc; /* Borde izquierdo en cyan */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #0a0a0f; /* Texto oscuro para que contraste con el fondo claro */
+            color: #e0e0e0; /* Texto claro */
         }
 
         .card:hover {
@@ -157,19 +157,19 @@
 
         .card h4 {
             font-family: 'Pricedown', cursive;
-            color: #0a0a0f; /* Títulos de tarjeta en negro para contraste */
+            color: #00ffcc; /* Títulos de tarjeta en cyan */
             margin-bottom: 8px;
             font-size: 1.2rem;
             letter-spacing: 0.5px;
         }
 
         .card p {
-            color: #0a0a0f; /* Texto de las tarjetas en negro */
+            color: #b0b0b8; /* Texto gris claro para legibilidad */
             font-size: 0.95rem;
         }
 
         .card p strong {
-            color: #003366; /* Un azul oscuro para resaltar */
+            color: #00ffaa; /* Resaltar en verde-cyan claro */
         }
 
         .web-list {
@@ -200,15 +200,16 @@
 
         .update-list {
             list-style: none;
-            background: #0d0d14;
+            background: #0a0a0f; /* Fondo oscuro */
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #00ffaa; /* Borde de la lista en verde-cyan */
+            border: 1px solid #00ffcc;
         }
 
         .update-list li {
             padding: 10px 0;
             border-bottom: 1px solid #1a1a2a;
+            color: #b0b0b8;
         }
 
         .update-list li:last-child {
@@ -233,10 +234,10 @@
         }
 
         .screenshot-item {
-            background: #00ffaa; /* Fondo de los ítems en verde-cyan */
+            background: #111118; /* Fondo oscuro */
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #00ffcc; /* Borde en cyan */
+            border: 1px solid #00ffcc;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             width: 300px;
         }
@@ -258,10 +259,10 @@
         .image-caption {
             padding: 10px 15px;
             text-align: center;
-            color: #0a0a0f; /* Texto oscuro para contraste */
+            color: #00ffcc; /* Texto en cyan */
             font-weight: bold;
             font-size: 0.95rem;
-            background: #00ffaa; /* Fondo en verde-cyan */
+            background: #0a0a0f; /* Fondo oscuro */
             border-top: 1px solid #00ffcc;
             font-family: 'Pricedown', cursive;
             letter-spacing: 0.5px;
@@ -292,7 +293,7 @@
             max-width: 85%;
             max-height: 85%;
             border-radius: 12px;
-            border: 2px solid #00ffcc; /* Borde del lightbox en cyan */
+            border: 2px solid #00ffcc;
             box-shadow: 0 0 60px rgba(0, 255, 204, 0.3);
             animation: fadeIn 0.3s ease;
         }
@@ -301,7 +302,7 @@
             position: absolute;
             top: 20px;
             right: 40px;
-            color: #00ffcc; /* Color del botón cerrar en cyan */
+            color: #00ffcc;
             font-size: 3rem;
             font-weight: bold;
             cursor: pointer;
@@ -324,20 +325,20 @@
         footer {
             margin-top: 40px;
             padding-top: 25px;
-            border-top: 1px solid #00ffaa; /* Línea superior en verde-cyan */
+            border-top: 1px solid #0a0a0f;
             text-align: center;
-            color: #00ffaa; /* Texto del footer en verde-cyan */
+            color: #0a0a0f; /* Texto oscuro sobre fondo claro */
             font-size: 0.9rem;
         }
 
         footer .legal {
             margin-top: 12px;
-            color: #00ffaa;
+            color: #0a0a0f;
             font-size: 0.8rem;
         }
 
         footer p strong {
-            color: #00ffcc; /* Correo en cyan */
+            color: #0a0a0f;
         }
 
         /* RESPONSIVE */
@@ -363,7 +364,7 @@
         <h1>🌍 Open Source World</h1>
         <p class="subtitle">A fully‑featured multiplayer Samp Open Source Server.</p>
         <span class="status-badge">🟢 Under Construction</span>
-        <img src="images/banner.png" alt="Open Source World Banner" style="width:100%; border-radius:12px; margin-top:20px; border: 1px solid #00ffaa;">
+        <img src="images/banner.png" alt="Open Source World Banner" style="width:100%; border-radius:12px; margin-top:20px; border: 1px solid #0a0a0f;">
     </header>
 
     <!-- ===== SECURITY ALERT ===== -->
@@ -493,7 +494,7 @@
                 <div class="image-caption">👕 New Binco Shop</div>
             </div>
         </div>
-        <p style="color: #00ffaa; font-size: 0.9rem; text-align: center; margin-top: 15px;">
+        <p style="color: #0a0a0f; font-size: 0.9rem; text-align: center; margin-top: 15px;">
             <em>Visual highlights of the latest features added to Open Source World.</em>
         </p>
     </section>
@@ -501,7 +502,7 @@
     <!-- ===== WEB PAGES ===== -->
     <section>
         <h2>🌐 In‑Game Web Pages</h2>
-        <p style="color: #00ffaa;">Access these websites via the PC in your house. They offer various services:</p>
+        <p style="color: #0a0a0f;">Access these websites via the PC in your house. They offer various services:</p>
         <div class="web-list">
             <a href="javascript:void(0)" class="web-item">www.sourceworldbank.com</a>
             <a href="javascript:void(0)" class="web-item">www.ammunation.com</a>
@@ -510,13 +511,13 @@
             <a href="javascript:void(0)" class="web-item">www.changecolor.com</a>
             <a href="javascript:void(0)" class="web-item">www.thedeepsource.com</a>
         </div>
-        <ul style="margin-top:15px; color:#00ffaa; list-style:square; padding-left:20px;">
-            <li><strong style="color:#00ffcc;">sourceworldbank</strong> – Check balance, transaction history.</li>
-            <li><strong style="color:#00ffcc;">ammunation</strong> – Buy any weapon with bank money (large ammo quantities).</li>
-            <li><strong style="color:#00ffcc;">weed</strong> – Buy weed seeds (max 20 total seeds + plants).</li>
-            <li><strong style="color:#00ffcc;">crypto</strong> – Monitor your mining progress remotely.</li>
-            <li><strong style="color:#00ffcc;">changecolor</strong> – Change your name color forever ($300,000).</li>
-            <li><strong style="color:#00ffcc;">thedeepsource</strong> – Exchange hostages (bought with SWC) for money and SWC. Requires a container (buy one at the container spots).</li>
+        <ul style="margin-top:15px; color:#0a0a0f; list-style:square; padding-left:20px;">
+            <li><strong style="color:#0a0a0f;">sourceworldbank</strong> – Check balance, transaction history.</li>
+            <li><strong style="color:#0a0a0f;">ammunation</strong> – Buy any weapon with bank money (large ammo quantities).</li>
+            <li><strong style="color:#0a0a0f;">weed</strong> – Buy weed seeds (max 20 total seeds + plants).</li>
+            <li><strong style="color:#0a0a0f;">crypto</strong> – Monitor your mining progress remotely.</li>
+            <li><strong style="color:#0a0a0f;">changecolor</strong> – Change your name color forever ($300,000).</li>
+            <li><strong style="color:#0a0a0f;">thedeepsource</strong> – Exchange hostages (bought with SWC) for money and SWC. Requires a container (buy one at the container spots).</li>
         </ul>
     </section>
 
@@ -566,8 +567,8 @@
         <p>
             <span>⚡ Powered by debwuoldirty contributor AlexMercerFrey</span>
         </p>
-        <p style="margin-top: 8px; color: #00ffcc;">
-            📧 Contact for questions and suggestions/ideas: <strong style="color:#00ffcc;">opensourceworldserver@gmail.com</strong>
+        <p style="margin-top: 8px; color: #0a0a0f;">
+            📧 Contact for questions and suggestions/ideas: <strong style="color:#0a0a0f;">opensourceworldserver@gmail.com</strong>
         </p>
         <p class="legal"><small>Server owner: debwuoldirty • This project is read‑only.</small></p>
     </footer>
