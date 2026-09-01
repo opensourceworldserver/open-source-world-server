@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Source World — Servidor SA-MP</title>
+    <title>Open Source World — SA-MP Server</title>
     <style>
         /* ============================================================
-           OPEN SOURCE WORLD — DISEÑO PROFESIONAL 2026
-           Paleta base: #008B8B (teal oscuro) + fondos oscuros
+           OPEN SOURCE WORLD — PROFESSIONAL DESIGN 2026
+           Base palette: #008B8B (dark teal) + dark backgrounds
            ============================================================ */
 
         @font-face {
@@ -72,7 +72,7 @@
                 radial-gradient(ellipse at 80% 100%, rgba(0, 139, 139, 0.04) 0%, transparent 50%);
         }
 
-        /* ===== BARRA SUPERIOR ===== */
+        /* ===== TOP BAR ===== */
         .top-bar {
             background: rgba(7, 11, 14, 0.95);
             backdrop-filter: blur(16px);
@@ -172,7 +172,7 @@
             }
         }
 
-        /* ===== ESTRUCTURA PRINCIPAL ===== */
+        /* ===== MAIN STRUCTURE ===== */
         .main-wrapper {
             display: flex;
             flex: 1;
@@ -183,14 +183,14 @@
             padding: 30px 24px 60px;
         }
 
-        /* ===== CONTENIDO PRINCIPAL ===== */
+        /* ===== MAIN CONTENT ===== */
         .content-main {
             flex: 1;
             min-width: 0;
             padding-right: 32px;
         }
 
-        /* ===== SIDEBAR DERECHA ===== */
+        /* ===== RIGHT SIDEBAR ===== */
         .sidebar {
             width: var(--sidebar-width);
             flex-shrink: 0;
@@ -280,6 +280,7 @@
         .sidebar-card .status-list .value {
             color: var(--text-primary);
             font-weight: 500;
+            text-align: right;
         }
 
         .sidebar-card .status-list .value.online {
@@ -330,7 +331,7 @@
             border-radius: 4px;
         }
 
-        /* ===== HEADER PRINCIPAL ===== */
+        /* ===== HERO SECTION ===== */
         .hero-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -398,7 +399,7 @@
             border: 1px solid rgba(240, 179, 92, 0.25);
         }
 
-        /* ===== SECCIONES ===== */
+        /* ===== SECTIONS ===== */
         .section-block {
             margin-bottom: 40px;
         }
@@ -429,7 +430,7 @@
             margin-left: 14px;
         }
 
-        /* ===== GRID DE TARJETAS ===== */
+        /* ===== FEATURES GRID ===== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -497,7 +498,7 @@
             font-family: var(--font-mono);
         }
 
-        /* ===== GALERÍA DE CAPTURAS ===== */
+        /* ===== GALLERY ===== */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -542,7 +543,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ===== LISTA DE CAMBIOS ===== */
+        /* ===== CHANGELOG ===== */
         .changelog-list {
             list-style: none;
             background: var(--bg-card);
@@ -593,7 +594,7 @@
             color: var(--text-primary);
         }
 
-        /* ===== SECCIÓN DE SUGERENCIAS ===== */
+        /* ===== SUGGESTIONS ===== */
         .suggestion-box {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -664,7 +665,7 @@
             margin-top: 14px;
         }
 
-        /* ===== SECCIÓN WEB PAGES ===== */
+        /* ===== WEB PAGES SECTION ===== */
         .web-pages-list {
             display: flex;
             flex-wrap: wrap;
@@ -716,38 +717,7 @@
             font-size: 0.78rem;
         }
 
-        /* ===== SECCIÓN ADICIONAL ===== */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            transition: var(--transition);
-        }
-
-        .info-card:hover {
-            border-color: var(--border-light);
-        }
-
-        .info-card h4 {
-            font-size: 0.95rem;
-            color: var(--primary-light);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .info-card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* ===== PIE DE PÁGINA ===== */
+        /* ===== FOOTER ===== */
         .site-footer {
             background: var(--bg-dark);
             border-top: 1px solid var(--border);
@@ -960,29 +930,29 @@
 </head>
 <body>
 
-    <!-- ===== BARRA SUPERIOR ===== -->
+    <!-- ===== TOP BAR ===== -->
     <header class="top-bar">
         <a href="#" class="logo">
             <div class="logo-icon">🌍</div>
             <span class="logo-text">Open Source <span>World</span></span>
         </a>
         <nav>
-            <a href="#features" class="active">Características</a>
-            <a href="#galeria">Galería</a>
+            <a href="#features" class="active">Features</a>
+            <a href="#gallery">Gallery</a>
             <a href="#web-pages">Web</a>
-            <a href="#changelog">Novedades</a>
-            <a href="#sugerencias">Sugerencias</a>
+            <a href="#changelog">Changelog</a>
+            <a href="#suggestions">Suggestions</a>
         </nav>
         <div class="server-status-top">
             <span class="status-dot"></span>
-            <span>En construcción</span>
+            <span>Under construction</span>
         </div>
     </header>
 
-    <!-- ===== ESTRUCTURA PRINCIPAL ===== -->
+    <!-- ===== MAIN STRUCTURE ===== -->
     <div class="main-wrapper">
 
-        <!-- ===== CONTENIDO PRINCIPAL ===== -->
+        <!-- ===== MAIN CONTENT ===== -->
         <main class="content-main">
 
             <!-- HERO -->
@@ -990,90 +960,90 @@
                 <img src="images/banner.png" alt="Open Source World Banner" class="hero-banner">
                 <div class="hero-overlay">
                     <h1>Open Source World</h1>
-                    <p class="subtitle">Servidor SA-MP de código abierto — experiencia multiplayer completa</p>
+                    <p class="subtitle">Fully-featured multiplayer SA-MP open source server</p>
                     <div class="badges-row">
                         <span class="badge-ip">💻 opensourceworldserver.com</span>
-                        <span class="badge-status">⛏️ Servidor en construcción</span>
+                        <span class="badge-status">⛏️ Server under construction</span>
                     </div>
                 </div>
             </div>
 
-            <!-- CARACTERÍSTICAS -->
+            <!-- FEATURES -->
             <section class="section-block" id="features">
-                <h2><span class="accent-line"></span> Características principales</h2>
-                <p class="section-desc">Todo lo que el servidor ofrece actualmente, en constante expansión.</p>
+                <h2><span class="accent-line"></span> Key Features</h2>
+                <p class="section-desc">Everything the server currently offers, constantly expanding.</p>
                 <div class="features-grid">
                     <div class="feature-card">
                         <h4>🚶‍♂️ 150+ NPC Walkers</h4>
-                        <p>Más de <strong>150 NPCs persistentes</strong> caminando por Los Santos, añadidos por el owner <strong>debwuoldirty</strong>. No dependen de la distancia — siempre están ahí, haciendo el mundo vivo. ¡El owner planea seguir añadiendo NPCs cada día!</p>
+                        <p>Over <strong>150 persistent NPCs</strong> walking around Los Santos, added by owner <strong>debwuoldirty</strong>. They are not distance-based – always there, making the world feel alive. The owner plans to keep adding more NPCs daily!</p>
                     </div>
                     <div class="feature-card">
                         <h4>📻 Radio Stream System</h4>
-                        <p>Nuevo sistema de radio con <strong>5 estilos</strong>: Hip-Hop, Rock, Electro House, Latino y Pop. Cada lista tiene <strong>10 canciones seleccionables</strong> en tiempo real, no aleatorias. Experiencia de radio excelente.</p>
+                        <p>New radio system with <strong>5 styles</strong>: Hip-Hop, Rock, Electro House, Latino and Pop. Each list has <strong>10 manually selectable songs</strong> (not random). Excellent real-time radio experience.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🏦 Bank & PIN</h4>
-                        <p>Sistema bancario completo con ATM, transferencias, historial y tarjetas bancarias. Toda la economía requiere <strong>tarjeta bancaria</strong> y <strong>PIN de 3 dígitos</strong>. Solicita la tuya en el banco.</p>
+                        <p>Full banking system with ATM, transfers, transaction history and bank cards. All economy requires a <strong>Bank Card</strong> and a <strong>3-digit PIN</strong>. Request yours at the bank counter.</p>
                     </div>
                     <div class="feature-card">
                         <h4>₿ Crypto SWC</h4>
-                        <p>Mina <strong>SWC (Source World Coins)</strong> en el Crypto Lab. Cada rack produce 100 SWC cada 30 minutos. Repara los racks con dinero del banco.</p>
+                        <p>Mine <strong>SWC (Source World Coins)</strong> in the Crypto Lab. Each rack produces 100 SWC every 30 minutes. Repair racks with bank money.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🌿 Weed System</h4>
-                        <p>Planta semillas (<code>/farm</code>), crece hasta <strong>20 plantas</strong>, cosecha 100g de hierba cada 30 min. Vende en el Cartel. Máximo 20 semillas/plantas por jugador.</p>
+                        <p>Plant seeds (<code>/farm</code>), grow up to <strong>20 plants</strong>, harvest 100g of weed every 30 min. Sell at the Cartel. Max 20 seeds/plants per player.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🏡 Houses</h4>
-                        <p>Posee hasta <strong>4 casas personalizadas</strong> (400+ objetos cada una). Con 90 días de propiedad, interior y armeros. Compra/vende por comandos.</p>
+                        <p>Own up to <strong>4 custom houses</strong> (400+ objects each). 90 days of ownership, interior and gun lockers. Buy/sell via commands.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🚗 Vehicles</h4>
-                        <p>Compra cualquier vehículo (<strong>2.5M</strong> cada uno), elige colores y aparca con <code>/park</code>. Llámalos por teléfono (tecla Y) — 4 slots disponibles.</p>
+                        <p>Buy any vehicle (<strong>2.5M</strong> each), choose colors, park with <code>/park</code>. Call them via phone (Y key) – 4 slots available.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🍔 Hunger & Thirst</h4>
-                        <p>Sistema de supervivencia — vigila tus barras de hambre y sed. Si llegan a 0, pierdes salud. Restáuralas en restaurantes o máquinas expendedoras.</p>
+                        <p>Survival system – watch your hunger and thirst bars. If they hit 0, you lose health. Restore them at restaurants or vending machines.</p>
                     </div>
                     <div class="feature-card">
                         <h4>📱 Phone</h4>
-                        <p>Pulsa <strong>Y</strong> para abrir el teléfono. Llama a tus vehículos aparcados al instante. Cada vehículo se guarda en un slot (máx. 4).</p>
+                        <p>Press <strong>Y</strong> to open your phone. Call your parked vehicles instantly. Each vehicle is stored in a slot (max 4).</p>
                     </div>
                     <div class="feature-card">
                         <h4>🎨 Customization</h4>
-                        <p>Cambia tu skin en la Victim Shop, equipa armas de espalda, y altera tu color de nombre permanentemente vía <code>www.changecolor.com</code> ($300,000).</p>
+                        <p>Change your skin at the Victim Shop, equip back weapons, and change your name color permanently via <code>www.changecolor.com</code> ($300,000).</p>
                     </div>
                     <div class="feature-card">
-                        <h4>📦 Inventory & Menú</h4>
-                        <p>Pulsa <strong>N</strong> para abrir el menú principal. Accede a inventario, GPS, ajustes y más. Todo lo que recoges (semillas, hierba, SWC, rehenes, kits médicos) se guarda.</p>
+                        <h4>📦 Inventory & Menu</h4>
+                        <p>Press <strong>N</strong> to open the main menu. Access inventory, GPS, settings and more. Everything you collect (seeds, weed, SWC, hostages, med kits) is saved.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>👑 Admin/Owner — Full Request</h4>
-                        <p>Si encuentras un lugar genial y quieres una casa o puerta, contacta a <strong>debwuoldirty</strong>. El owner puede mapear una casa personalizada en esa ubicación.</p>
+                        <h4>👑 Admin/Owner – Full Request</h4>
+                        <p>If you find a cool spot and want a house or door there, contact <strong>debwuoldirty</strong>. The owner can map a custom house for you in that location.</p>
                     </div>
                     <div class="feature-card">
                         <h4>⚔️ Deathmatch Arena</h4>
-                        <p>Nuevo sistema de DM con contador de kills personal, <strong>8 armas seleccionables</strong> por partida y estadísticas en tiempo real. Primera arena abierta en <strong>Santa Maria Beach</strong>.</p>
+                        <p>New DM system with personal kill counter, <strong>8 selectable weapons</strong> per match, real-time stats. First arena open at <strong>Santa Maria Beach</strong>.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🗺️ GPS System</h4>
-                        <p>GPS completo con waypoints para cada ubicación: banco, crypto lab, granja, tienda de vehículos, modshop, hospital, gasolinera, taxi, arenas DM, cartel y más. Actualizado constantemente.</p>
+                        <p>Full GPS with waypoints for every location: bank, crypto lab, farm, vehicle shop, modshop, hospital, gas station, taxi, DM arenas, cartel and more. Constantly updated.</p>
                     </div>
                     <div class="feature-card">
                         <h4>🤖 AI Helper</h4>
-                        <p>Modelo de IA como ayudante, integrado por <strong>debwuoldirty</strong>. Ayuda a nuevos jugadores, responde retos matemáticos, información deportiva, YouTube, redes sociales y más.</p>
+                        <p>AI model as helper, integrated by <strong>debwuoldirty</strong>. Helps new players, answers math challenges, provides sports info, YouTube, social media and more.</p>
                     </div>
                     <div class="feature-card">
                         <h4>📦 Visual Inventory</h4>
-                        <p>Inventario completamente renovado con interfaz visual moderna. Iconos y colores para gestionar hierba, SWC, tarjetas, kits médicos y más.</p>
+                        <p>Inventory completely revamped with a modern visual interface. Icons and colors to manage weed, SWC, cards, med kits and more.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- GALERÍA -->
-            <section class="section-block" id="galeria">
-                <h2><span class="accent-line"></span> Capturas recientes</h2>
-                <p class="section-desc">Haz clic en una imagen para ampliarla.</p>
+            <!-- GALLERY -->
+            <section class="section-block" id="gallery">
+                <h2><span class="accent-line"></span> Recent Screenshots</h2>
+                <p class="section-desc">Click an image to enlarge.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item lightbox-trigger" data-src="images/npcs_walkers.png">
                         <img src="images/npcs_walkers.png" alt="150+ NPC Walkers" loading="lazy">
@@ -1120,8 +1090,8 @@
 
             <!-- WEB PAGES -->
             <section class="section-block" id="web-pages">
-                <h2><span class="accent-line"></span> Páginas web in-game</h2>
-                <p class="section-desc">Accede desde el PC de tu casa. Servicios disponibles:</p>
+                <h2><span class="accent-line"></span> In-Game Web Pages</h2>
+                <p class="section-desc">Access these via the PC in your house. Available services:</p>
                 <div class="web-pages-list">
                     <span class="web-page-chip">www.sourceworldbank.com</span>
                     <span class="web-page-chip">www.ammunation.com</span>
@@ -1131,100 +1101,100 @@
                     <span class="web-page-chip">www.thedeepsource.com</span>
                 </div>
                 <ul class="web-desc-list">
-                    <li><strong>sourceworldbank</strong> — Consulta saldo e historial.</li>
-                    <li><strong>ammunation</strong> — Compra cualquier arma con dinero del banco.</li>
-                    <li><strong>weed</strong> — Compra semillas de hierba (máx. 20).</li>
-                    <li><strong>crypto</strong> — Monitorea tu minería remotamente.</li>
-                    <li><strong>changecolor</strong> — Cambia tu color de nombre ($300,000).</li>
-                    <li><strong>thedeepsource</strong> — Intercambia rehenes por dinero y SWC.</li>
+                    <li><strong>sourceworldbank</strong> — Check balance and transaction history.</li>
+                    <li><strong>ammunation</strong> — Buy any weapon with bank money.</li>
+                    <li><strong>weed</strong> — Buy weed seeds (max 20).</li>
+                    <li><strong>crypto</strong> — Monitor your mining progress remotely.</li>
+                    <li><strong>changecolor</strong> — Change your name color ($300,000).</li>
+                    <li><strong>thedeepsource</strong> — Exchange hostages for money and SWC.</li>
                 </ul>
             </section>
 
             <!-- CHANGELOG -->
             <section class="section-block" id="changelog">
-                <h2><span class="accent-line"></span> Últimas actualizaciones</h2>
-                <p class="section-desc">Registro de cambios del servidor.</p>
+                <h2><span class="accent-line"></span> Latest Updates</h2>
+                <p class="section-desc">Server changelog.</p>
                 <ul class="changelog-list">
                     <li>
                         <span class="changelog-date">2026-08-30</span>
-                        <span class="changelog-text">Owner <strong>debwuoldirty</strong> ha incrementado la población de NPCs persistentes a más de <strong>150 caminantes</strong> en Los Santos, con planes de añadir más diariamente.</span>
+                        <span class="changelog-text">Owner <strong>debwuoldirty</strong> has boosted persistent NPC population to over <strong>150 walkers</strong> across Los Santos, with plans to add more daily.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-30</span>
-                        <span class="changelog-text">Nuevo sistema de <strong>radio streaming</strong> con 5 estilos musicales y 10 canciones manualmente seleccionables por lista.</span>
+                        <span class="changelog-text">New <strong>radio streaming system</strong> with 5 music styles and 10 manually selectable songs per list.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-08</span>
-                        <span class="changelog-text">Nuevo <strong>inventario visual</strong> con iconos y colores. NPCs persistentes añadidos en todo Los Santos.</span>
+                        <span class="changelog-text">New <strong>visual inventory</strong> with icons and colors. Persistent NPCs added across Los Santos.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-07</span>
-                        <span class="changelog-text">Modelo de <strong>IA como ayudante</strong> integrado para nuevos jugadores.</span>
+                        <span class="changelog-text">Model of <strong>AI as helper</strong> integrated for new players.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-06</span>
-                        <span class="changelog-text">Nuevos edificios del Source Bank, dos interiores de Ammu-Nation, Back Weapon Shop, GPS System y Binco renovado.</span>
+                        <span class="changelog-text">New Source Bank buildings, two Ammu-Nation interiors, Back Weapon Shop, GPS System and renovated Binco.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-05</span>
-                        <span class="changelog-text">GPS mejorado con waypoints para todas las ubicaciones. Primera <strong>Deathmatch Arena</strong> en Santa Maria Beach.</span>
+                        <span class="changelog-text">Improved GPS with waypoints for all locations. First <strong>Deathmatch Arena</strong> at Santa Maria Beach.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-04</span>
-                        <span class="changelog-text">NPCs persistentes añadidos por el owner.</span>
+                        <span class="changelog-text">Persistent NPCs added by the owner.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-03</span>
-                        <span class="changelog-text">Corrección de altura de spawn en hospital y nuevas animaciones (<code>/sitchair</code>, <code>/sofasit</code>, <code>/sleep</code>).</span>
+                        <span class="changelog-text">Fixed hospital spawn height and new animations (<code>/sitchair</code>, <code>/sofasit</code>, <code>/sleep</code>).</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-02</span>
-                        <span class="changelog-text">Progreso de minería persistente y UI de terminal para el crypto lab.</span>
+                        <span class="changelog-text">Persistent mining progress and terminal UI for crypto lab.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-08-01</span>
-                        <span class="changelog-text">Sistema de hambre y sed con restaurantes y máquinas expendedoras.</span>
+                        <span class="changelog-text">Hunger and thirst system with restaurants and vending machines.</span>
                     </li>
                     <li>
                         <span class="changelog-date">2026-07-31</span>
-                        <span class="changelog-text">Versión inicial con banco, trabajos, sistema de hierba y parkour.</span>
+                        <span class="changelog-text">Initial version with bank, jobs, weed system and parkour.</span>
                     </li>
                 </ul>
             </section>
 
-            <!-- SUGERENCIAS -->
-            <section class="section-block" id="sugerencias">
+            <!-- SUGGESTIONS -->
+            <section class="section-block" id="suggestions">
                 <div class="suggestion-box">
-                    <h2>💡 Sugerencias para el servidor</h2>
-                    <p>¿Tienes ideas creativas? Compártelas con el owner. <strong>debwuoldirty</strong> lee cada sugerencia personalmente.</p>
+                    <h2>💡 Server Suggestions</h2>
+                    <p>Have creative ideas? Share them with the owner. <strong>debwuoldirty</strong> reads every suggestion personally.</p>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSe03bOjza9OermiWLeVTnqBT4CieqFUUoud0fPeeqWGQZf7kQ/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer" class="btn-suggest">
-                        📝 Enviar sugerencia
+                        📝 Send Suggestion
                     </a>
-                    <p class="suggestion-note">📸 Para pre-ordenar una casa, envía un correo a opensourceworldserver@gmail.com</p>
+                    <p class="suggestion-note">📸 For a house pre-order, send an email to opensourceworldserver@gmail.com</p>
                 </div>
             </section>
 
         </main>
 
-        <!-- ===== SIDEBAR DERECHA ===== -->
+        <!-- ===== RIGHT SIDEBAR ===== -->
         <aside class="sidebar">
-            <!-- Estado del servidor -->
+            <!-- Server status -->
             <div class="sidebar-card">
-                <h3>Estado del servidor</h3>
+                <h3>Server Status</h3>
                 <div class="server-ip-display">opensourceworldserver.com</div>
-                <button class="copy-btn" onclick="copyIP()">📋 Copiar IP</button>
+                <button class="copy-btn" onclick="copyIP()">📋 Copy IP</button>
                 <ul class="status-list" style="margin-top:16px;">
                     <li>
-                        <span class="label">Versión</span>
+                        <span class="label">Version</span>
                         <span class="value">SA-MP 0.3.7</span>
                     </li>
                     <li>
-                        <span class="label">Estado</span>
-                        <span class="value building">En construcción</span>
+                        <span class="label">Status</span>
+                        <span class="value building">Under construction</span>
                     </li>
                     <li>
                         <span class="label">Slots</span>
-                        <span class="value">100</span>
+                        <span class="value">300</span>
                     </li>
                     <li>
                         <span class="label">Owner</span>
@@ -1237,55 +1207,59 @@
                 </ul>
             </div>
 
-            <!-- Seguridad -->
+            <!-- Security -->
             <div class="sidebar-card">
-                <h3>Seguridad</h3>
+                <h3>Security</h3>
                 <div class="security-badge">
                     <img src="images/pentoo.png" alt="Pentoo Linux">
-                    <span>Servidor alojado detrás de <strong>Pentoo Linux</strong>. <a href="https://www.pentoo.ch/" target="_blank" rel="noopener noreferrer" style="color:var(--primary-light); text-decoration:none;">Visitar pentoo.ch</a></span>
+                    <span>Server hosted behind <strong>Pentoo Linux</strong>. <a href="https://www.pentoo.ch/" target="_blank" rel="noopener noreferrer" style="color:var(--primary-light); text-decoration:none;">Visit pentoo.ch</a></span>
                 </div>
             </div>
 
-            <!-- Enlaces rápidos -->
+            <!-- Quick links -->
             <div class="sidebar-card">
-                <h3>Enlaces rápidos</h3>
+                <h3>Quick Links</h3>
                 <div class="quick-links">
-                    <a href="#features">✨ Características</a>
-                    <a href="#galeria">📸 Galería</a>
-                    <a href="#web-pages">🌐 Páginas web</a>
-                    <a href="#changelog">📅 Novedades</a>
-                    <a href="#sugerencias">💡 Sugerencias</a>
-                    <a href="mailto:opensourceworldserver@gmail.com" style="border-left-color:var(--accent-warm);">📧 Contactar</a>
+                    <a href="#features">✨ Features</a>
+                    <a href="#gallery">📸 Gallery</a>
+                    <a href="#web-pages">🌐 Web pages</a>
+                    <a href="#changelog">📅 Changelog</a>
+                    <a href="#suggestions">💡 Suggestions</a>
+                    <a href="mailto:opensourceworldserver@gmail.com" style="border-left-color:var(--accent-warm);">📧 Contact</a>
                 </div>
             </div>
 
-            <!-- Información adicional -->
+            <!-- Additional Info (ampliada) -->
             <div class="sidebar-card">
-                <h3>Info adicional</h3>
+                <h3>Additional Info</h3>
                 <ul class="status-list">
-                    <li><span class="label">🔫 Armeros</span><span class="value">10+ slots</span></li>
-                    <li><span class="label">⏳ Progreso</span><span class="value">Persistente</span></li>
-                    <li><span class="label">🏆 Reglas</span><span class="value">Sin bans</span></li>
-                    <li><span class="label">🆘 Soporte</span><span class="value">24/7</span></li>
+                    <li><span class="label">🔫 Gun lockers</span><span class="value">10+ slots</span></li>
+                    <li><span class="label">⏳ Progress</span><span class="value">Persistent</span></li>
+                    <li><span class="label">🔇 Muting</span><span class="value">No muting server</span></li>
+                    <li><span class="label">🤝 Community</span><span class="value">Made for friends</span></li>
+                    <li><span class="label">🚫 Cheats</span><span class="value">Friends won't cheat</span></li>
+                    <li><span class="label">🏆 Rules</span><span class="value">No bans, no chat rules</span></li>
+                    <li><span class="label">🆘 Support</span><span class="value">24/7 by owner</span></li>
+                    <li><span class="label">🛡️ Bug recovery</span><span class="value">Guns restored if lost</span></li>
                 </ul>
             </div>
         </aside>
 
     </div>
 
-    <!-- ===== PIE DE PÁGINA ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-inner">
             <p>⚡ Powered by <strong style="color:var(--primary-light);">debwuoldirty</strong></p>
-            <p>📧 Contacto: <span class="footer-email">opensourceworldserver@gmail.com</span></p>
-            <p class="footer-legal">Server owner: debwuoldirty • Proyecto de solo lectura • © 2026 Open Source World</p>
+            <p>📧 Contact: <span class="footer-email">opensourceworldserver@gmail.com</span></p>
+            <p class="footer-legal">Server owner: debwuoldirty • Read-only project • © 2026 Open Source World</p>
         </div>
     </footer>
 
     <!-- ===== LIGHTBOX ===== -->
     <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Cerrar">&times;</button>
-        <img class="lightbox-content" id="lightboxImg" src="" alt="Imagen ampliada">
+        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Enlarged image">
     </div>
 
     <script>
@@ -1300,7 +1274,7 @@
                     e.stopPropagation();
                     const src = this.getAttribute('data-src') || this.querySelector('img')?.src || '';
                     lightboxImg.src = src;
-                    lightboxImg.alt = this.querySelector('.gallery-caption')?.textContent || 'Imagen ampliada';
+                    lightboxImg.alt = this.querySelector('.gallery-caption')?.textContent || 'Enlarged image';
                     lightbox.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 });
@@ -1325,14 +1299,14 @@
             }
         });
 
-        // ===== COPIAR IP =====
+        // ===== COPY IP =====
         function copyIP() {
             const ip = 'opensourceworldserver.com';
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(ip).then(() => {
                     const btn = document.querySelector('.copy-btn');
                     const originalText = btn.textContent;
-                    btn.textContent = '✅ ¡Copiado!';
+                    btn.textContent = '✅ Copied!';
                     setTimeout(() => { btn.textContent = originalText; }, 2000);
                 }).catch(() => {
                     fallbackCopy(ip);
@@ -1353,10 +1327,10 @@
                 document.execCommand('copy');
                 const btn = document.querySelector('.copy-btn');
                 const originalText = btn.textContent;
-                btn.textContent = '✅ ¡Copiado!';
+                btn.textContent = '✅ Copied!';
                 setTimeout(() => { btn.textContent = originalText; }, 2000);
             } catch (err) {
-                alert('No se pudo copiar. Copia manualmente: ' + text);
+                alert('Could not copy. Copy manually: ' + text);
             }
             document.body.removeChild(textarea);
         }
