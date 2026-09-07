@@ -178,12 +178,11 @@
             padding: 24px 20px 40px;
         }
 
-        /* ===== CONTENT AREA ===== */
         .content-main {
             width: 100%;
         }
 
-        /* ===== INFO CARDS (Server Status, Security, Quick Links) ===== */
+        /* ===== INFO CARDS (Server Status, Security, FAQS) ===== */
         .info-cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -553,6 +552,64 @@
             border-radius: 3px;
             font-size: 0.82rem;
             font-family: var(--font-mono);
+        }
+
+        /* ===== HIGHLIGHTS GRID (Additional Info) ===== */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-warm);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .highlight-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .highlight-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-warm);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .highlight-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .highlight-card p strong {
+            color: var(--text-primary);
         }
 
         /* ===== GALLERY ===== */
@@ -1005,7 +1062,7 @@
                     </div>
                 </div>
 
-                <!-- FAQS (sin guiones en las respuestas) -->
+                <!-- FAQS -->
                 <div class="info-card">
                     <h3>❓ FAQs</h3>
                     <ul class="faq-list">
@@ -1075,10 +1132,26 @@
                 <p class="section-desc">Everything the server currently offers, constantly expanding.</p>
                 <div class="features-grid">
 
-                    <!-- NEW FEATURES -->
+                    <!-- NEW FEATURES (2026-09-07) -->
+                    <div class="feature-card">
+                        <h4>🔫 Gunlocker in Cars</h4>
+                        <p>Now every vehicle has a <strong>gunlocker with 14 slots</strong> — the same locker you have in your house! Store and withdraw weapons directly from your car. <strong>Fully shared</strong> between house and car: if you sell the vehicle, your weapons remain safe in your house gunlocker. Installed at the <strong>Car Mod Shop</strong>. Price: <strong>$1,000,000</strong> source bank money.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>🚨 Stingers</h4>
+                        <p>Need to escape a fast opponent? <strong>Stingers</strong> are now available at the <strong>Car Mod Shop</strong>. Deploy them to stop pursuers and make your getaway. Perfect for high‑speed chases. Price: <strong>$1,000,000</strong> source bank money.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>🦌 Deer Sidequest</h4>
+                        <p>A second hidden sidequest! Find <strong>Deer</strong> scattered from the <strong>southern coast</strong> all the way up to <strong>San Fierro North</strong> and beyond along the coast. Complete the quest for <strong>great rewards</strong>. Use <code>/sidequest</code> to mark a zone and spawn hidden goats or deer, and <code>/leavequest</code> to exit the area and save your progress.</p>
+                    </div>
+
+                    <!-- Goat sidequest updated with /sidequest commands -->
                     <div class="feature-card">
                         <h4>🐐 Goat Sidequest</h4>
-                        <p>Find <strong>100 hidden goats</strong> scattered around Los Santos and earn <strong>Source Points (SP)</strong> – a brand new currency! Spend your SP in the <code>/spstore</code> for powerful rewards. Good luck!</p>
+                        <p>Find <strong>100 hidden goats</strong> scattered around Los Santos and earn <strong>Source Points (SP)</strong> – a brand new currency! Spend your SP in the <code>/spstore</code> for powerful rewards. Use <code>/sidequest</code> to mark a zone and spawn hidden goats (or deer) near you, and <code>/leavequest</code> to save and exit.</p>
                     </div>
 
                     <div class="feature-card">
@@ -1108,7 +1181,7 @@
 
                     <div class="feature-card">
                         <h4>🔧 Car Mod Shop</h4>
-                        <p>Take your ride to the next level! Choose <strong>special colors by ID, nitro, stingers, neons, armour</strong> and much more. Visit the mod shop to pimp your vehicle.</p>
+                        <p>Take your ride to the next level! Choose <strong>special colors by ID, nitro, stingers, neons, armour</strong> and much more. Now also includes <strong>gunlocker installation</strong> for $1,000,000.</p>
                     </div>
 
                     <!-- EXISTING FEATURES -->
@@ -1270,6 +1343,10 @@
                 <h2><span class="accent-line"></span> Latest Updates</h2>
                 <p class="section-desc">Server changelog.</p>
                 <ul class="changelog-list">
+                    <li>
+                        <span class="changelog-date">2026-09-07</span>
+                        <span class="changelog-text"><strong>New features added!</strong> Introduced <strong>Gunlocker in Cars</strong> (14 slots, shared with house, $1,000,000 at Mod Shop), <strong>Stingers</strong> for evading opponents ($1,000,000 at Mod Shop), and <strong>Deer Sidequest</strong> spanning from southern coast to San Fierro North. Sidequests now use <code>/sidequest</code> to spawn hidden goats/deer and <code>/leavequest</code> to save progress.</span>
+                    </li>
                     <li>
                         <span class="changelog-date">2026-09-05</span>
                         <span class="changelog-text"><strong>Major content drop!</strong> Added <strong>Goat Sidequest</strong> (100 hidden goats), <strong>Source Points (SP)</strong> currency, <strong>Paramedic Job</strong> with 75 patient spots, <strong>Restaurants</strong> (Cluckin' Bell, Burger Shot, Pizza Stack, Rusty Donuts), <strong>Cocaine System</strong> with Big Bear and Source Market, <strong>Back Weapons</strong> with color customization, and <strong>Car Mod Shop</strong> with nitro, stingers, neons, armour and more.</span>
