@@ -997,7 +997,6 @@
         </a>
         <nav>
             <a href="#features" class="active">Features</a>
-            <a href="#gallery">Gallery</a>
             <a href="#web-pages">Web</a>
             <a href="#changelog">Changelog</a>
             <a href="#suggestions">Suggestions</a>
@@ -1279,54 +1278,6 @@
                 </div>
             </section>
 
-            <!-- GALLERY -->
-            <section class="section-block" id="gallery">
-                <h2><span class="accent-line"></span> Recent Screenshots</h2>
-                <p class="section-desc">Click an image to enlarge.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item lightbox-trigger" data-src="images/npcs_walkers.png">
-                        <img src="images/npcs_walkers.png" alt="150+ NPC Walkers" loading="lazy">
-                        <div class="gallery-caption">🚶‍♂️ 150+ NPC Walkers</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/radio.png">
-                        <img src="images/radio.png" alt="Radio Stream System" loading="lazy">
-                        <div class="gallery-caption">📻 Radio Stream System</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/opsbot.png">
-                        <img src="images/opsbot.png" alt="AI Helper" loading="lazy">
-                        <div class="gallery-caption">🤖 AI Helper</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/inv_new.png">
-                        <img src="images/inv_new.png" alt="Visual Inventory" loading="lazy">
-                        <div class="gallery-caption">📦 Visual Inventory</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/source_bank_buildings.png">
-                        <img src="images/source_bank_buildings.png" alt="Source Bank Buildings" loading="lazy">
-                        <div class="gallery-caption">🏢 Source Bank Buildings</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/ammunation_new1.png">
-                        <img src="images/ammunation_new1.png" alt="Ammu-Nation Santa Maria" loading="lazy">
-                        <div class="gallery-caption">🔫 Ammu-Nation Santa Maria</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/ammunation_new2.png">
-                        <img src="images/ammunation_new2.png" alt="Ammu-Nation Jefferson" loading="lazy">
-                        <div class="gallery-caption">🔫 Ammu-Nation Jefferson</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/back_weapon_shop.png">
-                        <img src="images/back_weapon_shop.png" alt="Back Weapon Shop" loading="lazy">
-                        <div class="gallery-caption">🎒 Back Weapon Shop</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/gps_system.png">
-                        <img src="images/gps_system.png" alt="GPS System" loading="lazy">
-                        <div class="gallery-caption">🗺️ GPS System</div>
-                    </div>
-                    <div class="gallery-item lightbox-trigger" data-src="images/binco_new.png">
-                        <img src="images/binco_new.png" alt="Binco Shop" loading="lazy">
-                        <div class="gallery-caption">👕 Binco Shop</div>
-                    </div>
-                </div>
-            </section>
-
             <!-- WEB PAGES -->
             <section class="section-block" id="web-pages">
                 <h2><span class="accent-line"></span> In‑Game Web Pages</h2>
@@ -1441,49 +1392,7 @@
         </div>
     </footer>
 
-    <!-- ===== LIGHTBOX ===== -->
-    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
-        <img class="lightbox-content" id="lightboxImg" src="" alt="Enlarged image">
-    </div>
-
     <script>
-        // ===== LIGHTBOX =====
-        document.addEventListener('DOMContentLoaded', function() {
-            const triggers = document.querySelectorAll('.lightbox-trigger');
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-
-            triggers.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const src = this.getAttribute('data-src') || this.querySelector('img')?.src || '';
-                    lightboxImg.src = src;
-                    lightboxImg.alt = this.querySelector('.gallery-caption')?.textContent || 'Enlarged image';
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-        });
-
-        function closeLightbox(event) {
-            const lightbox = document.getElementById('imageLightbox');
-            if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const lightbox = document.getElementById('imageLightbox');
-                if (lightbox.classList.contains('active')) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-        });
-
         // ===== COPY IP =====
         function copyIP() {
             const ip = 'opensourceworldserver.com';
